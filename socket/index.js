@@ -24,6 +24,11 @@ io.on('connection',(socket)=>{
         socket.emit('testerEvent',{description: 'A custom event of a certain description'});
     },40000);
 
+    //receiving from client
+    socket.on('clientEvent',(data)=>{
+      console.log(data);
+    });
+
     //whenever someone disconnects
     socket.on('disconnect',()=>{
         console.log("A user disconnected");
@@ -31,5 +36,5 @@ io.on('connection',(socket)=>{
 });
 
 http.listen(port,()=>{
-    console.log("app is up and running...");
+    console.log(`app is up and running at port ${port}...`);
 });
