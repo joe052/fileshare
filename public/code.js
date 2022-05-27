@@ -6,9 +6,9 @@
         return `${Math.trunc(Math.random()*999)}-${Math.trunc(Math.random()*999)}-${Math.trunc(Math.random()*999)}`;
     }
 
-    document.querySelector('#sender-start-con-btn').addEventListener('click',()=>{
-        let joinID = generateID();
-        document.querySelector('#join-id').innerHTML = `
+    document.querySelector("#sender-start-con-btn").addEventListener("click",()=>{
+        const joinID = generateID();
+        document.querySelector("#join-id").innerHTML = `
         <b>Room ID</b>
         <span>${joinID}</span>
         `;
@@ -17,4 +17,9 @@
         });
     });
 
+    socket.on('init',(uid)=>{
+        receiverID = uid;
+        document.querySelector(".join-screen").classList.remove("active");
+        document.querySelector(".fs-screen").classList.add("active");
+    });
 })();
